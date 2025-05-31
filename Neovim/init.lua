@@ -46,7 +46,29 @@ require("lazy").setup({
       })
     end,
   },
-})
+  -- Nvim-tree
+  {
+  "nvim-tree/nvim-tree.lua",
+  version = "*",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    require("nvim-tree").setup({
+      filters = {
+        dotfiles = false,
+        git_ignored = false,
+      },
+      git = { enable = false },
+      view = {
+        width = 30,
+        side = "left",
+      },
+    })
+  end,
+},
+
+}
+)
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle File Explorer" })
 
